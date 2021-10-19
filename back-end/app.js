@@ -1,10 +1,16 @@
 const express = require('express');
+const helmet = require('helmet');
+
 const app = express();
 
 require('./db/config');
 
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
+
+const path = require('path');
+
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,8 +21,11 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 //parser
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
+
+app.use(helmet());
 
 module.exports = app;
