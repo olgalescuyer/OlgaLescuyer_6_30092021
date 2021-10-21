@@ -1,16 +1,22 @@
 const express = require('express');
 const helmet = require('helmet');
 
+const rateLimit = require("express-rate-limit");
+
 const app = express();
 
 require('./db/config');
+
+// rate-limiter for prevent the DDos attack :
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
 
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 
 const path = require('path');
-
-
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,6 +24,8 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+app.use(limiter);
 
 app.use(express.json());
 //parser
