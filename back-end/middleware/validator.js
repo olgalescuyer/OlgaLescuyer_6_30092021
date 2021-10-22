@@ -15,11 +15,11 @@ exports.userValidator = [
     check('email')
     .isEmail()
     .normalizeEmail()
-    .withMessage('It must be something like this : test@mail.com'),
+    .withMessage('👎 It must be something like this : test@mail.com'),
 
     check('password')
     .isLength({ min: 8 })
     .trim()
-    .withMessage('Your password must be at least 8 characters')
+    .withMessage('👀 Your password must be at least 8 characters')
     .escape()
 ];
