@@ -1,4 +1,5 @@
 const { check, validationResult } = require('express-validator');
+// form validation
 
 exports.userValidationResult = (req, res, next) => {
     const result = validationResult(req);
@@ -12,17 +13,13 @@ exports.userValidationResult = (req, res, next) => {
 
 exports.userValidator = [
     check('email')
-    .normalizeEmail()
     .isEmail()
-    .withMessage('email is required')
-    .not()
-    .withMessage('must be something like this : mail@mail.com'),
+    .normalizeEmail()
+    .withMessage('It must be something like this : test@mail.com'),
 
     check('password')
-    .trim()
-    .notEmpty()
     .isLength({ min: 8 })
-    .withMessage('password is required')
-    .withMessage('password must be 8 characters')
-
+    .trim()
+    .withMessage('Your password must be at least 8 characters')
+    .escape()
 ];

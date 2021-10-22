@@ -1,6 +1,7 @@
 const Sauce = require('../models/Sauce');
 
 const fs = require('fs');
+// file system
 
 exports.createSauce = (req, res, next) => {
 
@@ -41,7 +42,6 @@ exports.deleteSauce = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
-
 
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()

@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
+// authentification
 const dotenv = require("dotenv");
+// masque
 dotenv.config();
 
 const tokenSecret = process.env.TOKEN;

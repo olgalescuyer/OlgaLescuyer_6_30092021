@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
+// masque
 dotenv.config();
 
 const db_config = process.env.DB_CONFIG;

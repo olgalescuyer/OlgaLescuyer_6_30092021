@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
+// hash
 const jwt = require('jsonwebtoken');
+// authentification
 
 const dotenv = require("dotenv");
 dotenv.config();
+// masque
 
 const tokenSecret = process.env.TOKEN;
 
